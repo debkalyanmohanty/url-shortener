@@ -10,13 +10,13 @@ const path = require('path');
 
 const MONGO_URI = process.env.MONGO_URI;
 
-
+app.use(cors());
 //form-data
 app.use(express.urlencoded({ extended: false }));
 
 //json
 app.use(express.json({ extended: false }));
-app.use(cors());
+
 
 app.use(express.static(path.join(__dirname, "public")));
 mongoose.connect(MONGO_URI , {
