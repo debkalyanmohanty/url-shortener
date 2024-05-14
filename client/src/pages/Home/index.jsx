@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Input, Button, Typography } from '@mui/material';
 import { SHORTEN_URL } from '../../api/shorten';
+import { CLIENT_URL } from '../../api/client';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -86,7 +87,7 @@ function Home() {
             setCode(res.data.data.short_code);
             ReactGA.event({
               category: 'User',
-              action: 'http://localhost:5173/'+res.data.data.short_code,
+              action: CLIENT_URL+res.data.data.short_code,
               label: 'URL Shortened',
             });
           })
@@ -134,7 +135,7 @@ function Home() {
                 marginTop: '10px'
             }}>
             <Typography variant='subtitle2'>The Shortened Url Is</Typography>
-            <Link to={"http://localhost:5173/"+code}>{"http://localhost:5173/"+code}</Link>
+            <Link to={CLIENT_URL+code}>{CLIENT_URL+code}</Link>
             </div>
         )
       }
