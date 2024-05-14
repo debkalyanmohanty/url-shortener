@@ -10,7 +10,9 @@ const path = require('path');
 
 const MONGO_URI = process.env.MONGO_URI;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://url-shortener-twin.vercel.app'
+  }));
 //form-data
 app.use(express.urlencoded({ extended: false }));
 
