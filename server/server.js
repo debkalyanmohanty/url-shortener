@@ -6,6 +6,7 @@ const cors = require('cors');
 const routes = require('./routes/route');
 const app = express();
 const server = require("http").createServer(app);
+const path = require('path');
 
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-
+app.use(express.static(path.join(__dirname, "public")));
 mongoose.connect(MONGO_URI , {
     useNewUrlParser: true,
     useUnifiedTopology: true
