@@ -21,7 +21,8 @@ const urlSchema = mongoose.Schema({
         required: true,
     },
     location: {
-        type: String,
+        type: Object,
+        default: null
         // required: true
     }
 })

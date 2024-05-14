@@ -1,15 +1,13 @@
 const Url = require('../models/url');
 const requestIp = require('request-ip');
-const geoip = require('geoip-lite');
 exports.shortenUrl = async(req , res ) => {
     try{
         const ipAddress = requestIp.getClientIp(req);
-        const location = geoip.lookup(ipAddress);
         const data = await Url.findOne({long_url:req.body.long_url});
         if(data){
             return res.status(403).json({data: data , message: 'Url Already Shortened'});
         }
-        const url = new Url({long_url: req.body.long_url , ipAddress: ipAddress , location: location});
+        const url = new Url({long_url: req.body.long_url , ipAddress: ipAddress});
         await url.save();
         return res.status(201).json({message: 'Url Shortened Successfully' , data: url});
     }
